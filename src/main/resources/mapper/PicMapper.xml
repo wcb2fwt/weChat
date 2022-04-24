@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.PicMapper">
+
+    <!--在mapper之内我们需要写出各种各样的标签，每一个标签需要对应一个接口中的方法 ,每一个标签的id为接口中对应的方法名，这样mybatis就知道
+这个是为那个方法服务的-->
+
+
+
+    <insert id="insertPic" parameterType="com.example.demo.entity.Pic" keyProperty="id">
+        insert into pic (PICNAME,PICURL,NEWNAME,CREATE_DATE,HEADERURL)
+        values (#{picName}, #{picUrl}, #{newName}, #{createDate}, #{url})
+    </insert>
+    <update id="updatePic">
+        update pic set PICNAME = #{picName},PICURL = #{picUrl},NEWNAME = #{newName},HEADERURL = #{url}
+        where ID = #{id}
+    </update>
+
+    <select id="picUrl" resultType="java.lang.String">
+        select HEADERURL
+        from pic
+        where PICNAME = #{picName}
+    </select>
+</mapper>

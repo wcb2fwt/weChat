@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ScanRecordMapper">
+
+    <!--在mapper之内我们需要写出各种各样的标签，每一个标签需要对应一个接口中的方法 ,每一个标签的id为接口中对应的方法名，这样mybatis就知道
+这个是为那个方法服务的-->
+
+
+
+<!--    <insert id="geta1ll" parameterType="com.example.demo.entity.Pic" keyProperty="id">-->
+<!--        insert into pic (PICNAME,PICURL,NEWNAME,CREATE_DATE,HEADERURL)-->
+<!--        values (#{picName}, #{picUrl}, #{newName}, #{createDate}, #{url})-->
+<!--    </insert>-->
+
+    <select id="getall" resultType="com.example.demo.entity.ScanRecord">
+        select EXP_TYPE,PRODUCT_SOLD,count(0) as patientType
+        from scan_record
+        where PRODUCT_SOLD = #{id}
+        group by product_sold,EXP_TYPE
+    </select>
+</mapper>
